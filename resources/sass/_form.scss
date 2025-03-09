@@ -1,0 +1,36 @@
+@use "../custom" as *;
+.form-floating {
+    .form-control {
+        padding: 0.5rem 0.75rem;
+        height: calc(2.7rem + 2px);
+        width: auto;
+    min-width: 250px;
+    border: none;
+    border-bottom: 1px solid $border;
+    border-radius: 0;
+    transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    &:focus{
+        outline: 0px;
+        outline-offset: 0px;
+        border-bottom: 1px solid #000;
+        box-shadow:none;
+    }
+    }
+    label{
+        padding-left: 0px;
+    }
+}
+
+.contact-page{
+    margin-top: 50px;
+    .contact-form{
+        padding: 50px;
+        background: white;
+        .text-colored{
+            color: $primary-green;
+            font-weight: 600;
+            font-style: italic;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+        }
+    }
+}

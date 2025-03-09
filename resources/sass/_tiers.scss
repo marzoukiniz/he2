@@ -1,0 +1,23 @@
+@use "../custom" as *;
+
+
+
+
+
+.card{
+    border: 0.5px solid $border;
+    .card-img-top{
+        height: 256px;
+    }
+    .card-title{
+        font-family: $familyR;
+        color: #222222;
+        text-transform: capitalize;
+      
+    }
+    .card-body{
+        .btn{
+            border-radius: 0px!important;
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@use "../custom" as *;
+
+.forgotpwd {
+    text-align: center;
+    padding: 15px;
+    font-family: $familyR;
+    font-size: 15px;
+    width: 40%;
+    margin: auto;
+    border: 1px solid $border;
+
+    form {
+        transition: transform 0.3s ease, opacity 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+         width: 95%;
+         margin: auto;
+         height: auto;
+        background: white;
+        position: relative;
+        .input_group {
+            width: auto;
+            margin-bottom: 12px;
+            label {
+                display: block;
+                text-align: start;
+            }
+            .input{
+                border: solid #CAD2DF 1px;
+                border-radius: 0px;
+                width: 300px;
+                max-width: 380px;
+                height: 40px;
+                padding: 5px 10px;
+                font-family: "FlatlineRegular";
+                font-size: 17px;
+                font-weight: 500;
+                outline: none;
+                transition: all 0.3s linear;
+            }
+        }
+        .send-btn {
+            width: 200px;
+            height: 40px;
+            margin-bottom: 5px;
+            border: none;
+            outline: none;
+            font-family: $familyR;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            color: white;
+            background: linear-gradient(45deg, $primary, $gray) no-repeat center;
+            border-radius: 0px;
+            // display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s linear;
+            &:hover {
+              background: linear-gradient(-45deg, $primary, $gray) no-repeat
+                center;
+                transform: scale(0.95);
+            }
+            &:active {
+              transform: scale(0.95);
+            }
+          }
+    }
+}

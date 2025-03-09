@@ -1,0 +1,198 @@
+
+/* nizar custome backend css */
+.sidebar-brand-icon svg{
+width: 48px;
+/* fill: #EBCDBF; */
+}
+.sidebar #sidebarToggle {
+    transition: all 0.3s ease-in-out;
+    background: transparent;
+    transform: rotateY(180deg);
+}
+.sidebar.toggled #sidebarToggle {
+    transform: rotateY(0deg);
+}
+.sidebar.toggled #sidebarToggle::after {
+    content: '';
+    font-family: 'Font Awesome 5 Free';
+    margin-left: .25rem;
+}
+
+.sidebar #sidebarToggle::after {
+    font-weight: 900;
+    content: '';
+    font-family: 'Font Awesome 5 Free';
+    margin-right: .1rem;
+}
+
+#wrapper #content-wrapper {
+    background-color: #FFF8F5!important;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 4px;
+ 
+}
+.container-fluid{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.text-primary {
+    color: #797979 !important;
+}
+.sidebar{
+    transition: all 0.3s ease-in-out;
+}
+.sidebar .sidebar-brand {
+    /* margin-bottom: 20px;   */
+}
+
+.sidebar .nav-item .nav-link {
+    color: #797979!important;
+    text-decoration: none;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+.sidebar .nav-item .collapse .collapse-inner .collapse-item:active,.sidebar .nav-item .collapse .collapse-inner .collapse-item:hover, .sidebar .nav-item .collapsing .collapse-inner .collapse-item:active,.sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
+    background-color: #000000;
+    color: #F1CCBD;
+}
+
+.btn-primary {
+    color: #191919;
+    background-color: #EBCDBF;
+    border-color: #EBCDBF;
+    min-height: 40px;
+    border-radius: 1px;
+    /* text-align: center; */
+    line-height: 27px;
+}
+.btn-primary:hover{
+    color: #191919;
+    background-color: #f0c4b0;
+    border-color: #f0c4b0;  
+}
+
+
+.sidebar .nav-item .nav-link {
+    color: #797979;
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 50px;
+    border-radius: 4px !important;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    padding: 10px;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+.sidebar .nav-item .nav-link svg {
+margin-right: 10px;
+width: 20px;
+}
+.sidebar .nav-item .nav-link.active {
+    background: #191919;
+    margin-left: 15px;
+    margin-right: 15px;
+    height:  36px;
+    border-radius: 4px !important;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-evenly; */
+    padding: 10px;
+}
+.sidebar .nav-item .nav-link.active span {
+    color: #F1CCBD !important;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 16px;
+    margin-left: 6px;
+    font-weight: 300;
+}
+.sidebar .nav-item .nav-link.active svg {
+    fill: #F1CCBD !important;
+    text-decoration: none;
+    background-color: transparent;
+    width: 20px;
+}
+
+@media (min-width: 768px) {
+    .sidebar .nav-item .nav-link[data-toggle=collapse]::after {
+       
+        content: "" !important;
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid gray;
+        border-bottom: 2px solid gray;
+        transform: rotate(-45deg);
+        margin-left: 12px;
+    }
+}
+
+/* sidebar toggle */
+@media (min-width: 768px) {
+    .sidebar.toggled {
+        overflow: visible;
+        width: 6rem !important;
+    }
+}
+.sidebar.toggled .nav-item .nav-link.active span ,.sidebar.toggled .nav-item .nav-link span{
+ display: none;
+}
+.sidebar.toggled .nav-item .nav-link.active {
+    background: #191919;
+    height:  36px;
+    width: 40px;
+    display: flex;
+    padding: 2px;
+    margin-left: 23px;
+}
+
+
+.sidebar.toggled .nav-item .nav-link  {
+    height: 36px;
+width: 40px;
+display: flex;
+padding: 2px;
+margin-left: 23px;
+border: 1px solid #cacaca;
+border-radius: 2px;
+justify-content: center;
+align-items: center;
+}
+.sidebar.toggled .nav-item .nav-link svg {
+    width: 20px;
+    margin-right: 0px;
+}
+
+.sidebar.toggled .nav-item .nav-link.active svg {
+    width: 20px;
+    margin-right: 0px;
+}
+.sidebar.toggled .sidebar-heading {
+    text-align: left;
+    display: none;
+}
+
+.sidebar.toggled .nav-item {
+    position: relative;
+    margin-bottom: 10px;
+}
+.sidebar.toggled .nav-item .nav-link:hover {
+    
+    background: #fff8f591;
+}
+svg{ width: 24px;}

@@ -1,0 +1,196 @@
+@use "../custom" as *;
+
+.services-page{
+    .banner{
+        display: flex;
+        align-items: center;
+        .banner-img{
+        border-bottom-right-radius: 250px;
+        }
+        .page-title{
+            font-family: $familyR;
+            font-weight: bold;
+            font-size: 27px;
+            color: $black;
+            margin-left: 25px;
+        }
+    }
+
+    .primary-services{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+.services-section {
+    .services-desc{
+        margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 19px;
+    margin: 20px;
+    text-align: justify;
+    width: 93%;
+    margin: auto;
+    padding: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    img{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    }
+}
+
+
+:root {
+    --clr-neutral-900: hsl(207, 19%, 9%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-accent-400: hsl(142, 90%, 61%);
+  }
+  
+ 
+  
+   
+  
+  .primary-service {
+    color: $white;
+    padding: 0px 0px;
+    height: auto;
+    min-height:350px;
+    margin-bottom: 20px;
+    border:none;
+    overflow: hidden;
+    transition: transform 500ms ease;
+    position: relative;
+    border-radius: 4px 4px 0 0;
+    .img {
+      
+        height: 200px;
+    /* contain: content; */
+    transition: all 1s ease;
+    object-fit: cover;
+      }
+      &:hover, &:focus-within{
+        transform: scale(1.05);
+      }
+      .content {
+        /* min-height: 20rem; */
+        position: relative; 
+        padding: 19px;
+       background: white;
+       transition: all 500ms ease;
+       border-radius: 10px;
+    margin-top: -20px;
+    border: 1px solid #dfdfdf;
+    border-top: none;
+        .title {
+            position: relative;
+            width: max-content;
+            font-family: $familyR;
+            font-weight: bold;
+            color: $gold;
+            margin-bottom: 7px;
+            text-transform: capitalize;
+          }
+         
+          .body {
+            position: relative;
+            color: rgba(0, 0, 0, 0.86);
+            font-family: $familyR;
+            font-size: 15px;
+            transition: all 0.3s linear;
+            .desc{
+                transition: all 0.3s linear;
+            }
+           
+            .readmore{
+                font-weight: bold;
+                margin-left: 5px;
+                margin-right: 5px;
+                cursor: pointer;
+                transition: all 0.3s linear;
+            }
+          }
+          .phone {
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            color:$black; 
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-family: $familyR;
+            display: flex;
+           
+            margin-top: 5px;
+            width: 30%;
+           
+        }
+      }
+  }
+  
+  
+   
+  
+ 
+
+  
+  
+
+
+  .secondary-service {
+    color: $white;
+    padding: 0px 0px;
+    min-height: 220px;
+    margin-bottom: 20px;
+    // border:2px solid $gold;
+    overflow: hidden;
+    transition: transform 500ms ease;
+    position: relative;
+    border-radius: 4px;
+    background: rgb(250, 250, 250);
+      &:hover, &:focus-within{
+        transform: scale(1.05);
+      }
+      .content {
+        /* min-height: 20rem; */
+        position: relative; 
+        padding: 19px;
+    
+       transition: all 500ms ease;
+        .title {
+            position: relative;
+            width: max-content;
+            font-family: $familyR;
+            font-size: 15px;
+            font-weight: bold;
+            color: $black;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+          }
+           
+          .desc {
+            position: relative;
+            color: rgba(0, 0, 0, 0.86);
+            font-family: $familyR;
+            font-size: 15px;
+          }
+          .phone {
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            color:$black; 
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-family: $familyR;
+            display: flex;
+           
+            margin-top: 5px;
+            width: 30%;
+           
+        }
+      }
+  }
+  
+  
+   
+ 

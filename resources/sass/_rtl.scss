@@ -1,0 +1,46 @@
+@use "../custom" as *;
+
+html[lang="ar"] , body[dir="rtl"]{
+    .services-page .banner .banner-img {
+        border-bottom-right-radius: 0px;
+       
+        border-bottom-left-radius: 250px;
+    }
+    .primary-service .content .title, .primary-service .content .body .desc {
+        font-family: $familyAR!important;
+    }
+    font-family: $familyAR!important;
+    .dropdown-toggle {
+        font-family: $familyAR!important;
+    }
+    .header .right-menu .btn {
+        font-family: $familyAR!important;
+    }
+    .header .site-nav ul li a {
+        font-family: $familyAR!important;
+    }
+    .register-btn{
+        font-family: $familyARlight!important;
+    }
+.footer{
+    *{
+        font-family: $familyAR!important;
+    }
+}
+
+.register-form-inline .label {
+    left: unset;
+    right: 0.625rem;}
+
+    .profile-progress .progress-right .titles .desc {
+        font-family: $familyARlight!important;
+    }
+    .profile-progress .progress-right .titles .title {font-family: $familyAR!important;}
+    .profile-progress .btn-setup {font-family: $familyARlight!important;}
+
+    .breadc nav ol { 
+        direction: ltr;
+    }
+}  
+ 
+

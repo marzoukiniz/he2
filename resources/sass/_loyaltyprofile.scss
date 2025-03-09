@@ -1,0 +1,58 @@
+@use "../custom" as *;
+.mycard{
+    border-radius: 8px;
+    margin-bottom: 14px;
+    &.locked{
+        opacity: 0.7;
+    }
+    .myloyalty{
+        display: flex;
+        width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+        
+      .icon{
+            width:100%;
+            margin-right: 10px;
+            text-align: center;
+            img{
+                width: 165px;
+            }
+        }
+        .info-text{
+            width: 100%;
+            text-align: center;
+            .title{
+                font-size: 15px;
+                padding: 5px;
+                color: $text-gray;
+                font-weight: 600;
+            }
+            .progress-status{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                .status{
+                    width: 58%;
+                    height: 12px;
+                    border-radius: 15px;
+                    background: #eaeaea;
+                    .pg-bar{
+                        background: $primary-green;
+                        height: 12px;
+                    border-radius: 15px;
+                    width: 40%;
+                    }
+                }
+                .current-lv{
+                    width: 20%;
+                }
+                .next-lv{
+                    width: 20%;
+                }
+            }
+        }
+    }
+}

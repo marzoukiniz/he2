@@ -1,0 +1,576 @@
+/*** Mixins & Default Styles ***/
+@mixin object($width, $height, $bg) {
+	width: $width;
+	height: $height;
+	background: $bg;
+}
+@mixin transPos($top, $right, $bottom, $left,$transX,$transY) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+	transform: translate($transX, $transY);
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+/*** Color Variables ***/
+$header-bg: #000;
+$nav-bg: #000000;
+$pink: #fa6c98;
+$aqua: #3ed6ea;
+$accent: #fff;
+
+/*** Centering Hack ***/
+@mixin center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*** Header Styles ***/
+.header2 {
+	@include object(100vw,70px,$header-bg);
+    display: flex;
+	z-index: 10;
+    position: absolute;
+
+
+    /*** Navigation Styles ***/
+.nav2 {
+	@include object(100vw,70px,$nav-bg);
+	// display: grid;
+	// grid-template-columns: 0.2fr 0.6fr 0.2fr;
+	display: flex;
+    justify-content: space-between;
+ 
+	position: fixed;
+	z-index: 10;
+	transition: all 0.3s;
+	&.navShadow {
+		box-shadow: 0 4px 30px -5px rgba(#000, 0.2);
+		height: 64px;
+		backdrop-filter: blur(10px);
+		transition: backdrop-filter 0.3sease, background 0.3sease; 
+	 
+		background: rgba(0, 0, 0, 0.8);
+		#word-mark {
+			opacity: 0;
+		}
+	}
+}
+
+#brand,
+#menu,
+ul {
+	display: flex;
+	align-items: center;
+}
+
+#brand {
+	padding-left: 40px;
+}
+
+#logo {
+
+	border-radius: 50%;
+	cursor: pointer;
+	width: 160px;
+}
+
+#word-mark {
+	@include object(120px,20px,$accent);
+	border-radius: 90px;
+	margin-left: 20px;
+	opacity: 1;
+	transition: all 0.3s;
+}
+
+/*** Menu Styles ***/
+#menu {
+	justify-content: center;
+	// padding-right: 40px;
+    #menu-toggle {
+        @include object(55px,55px,darken($nav-bg,5%));
+        @include center;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        &:hover .bar {
+            width: 25px;
+        }
+        &.closeMenu {
+            .bar {
+                width: 25px;
+                &:first-child {
+                    transform: translateY(7px) rotate(45deg);
+                }
+                &:nth-child(2) {
+                    transform: scale(0);
+                }
+                &:last-child {
+                    transform: translateY(-7px) rotate(-45deg);
+                }
+            }
+        }
+    }
+	ul{
+		margin-bottom: 0px;
+	}
+}
+
+li {
+	margin-left: 20px;
+	a {
+	     
+		  font-size: 18px;
+		  color: $gray;
+		  height: 20px;
+		  display: block;
+		  font-family: 'Poppins';
+    font-weight: 200;
+	display: flex;
+		align-items: center;
+	&:hover{
+		color: $primary;
+	}
+	
+	}
+	&.active{
+		a{
+			color: $primary;
+		}
+		
+	}
+}
+
+#actions{
+	display: flex;
+	align-items: center;
+		padding-right: 40px;
+		// height: 70px;
+		justify-content: flex-end;
+		.cart-icon{
+			margin-right: 10px;
+            margin-left: 10px;
+			display: flex;
+			.total-count{
+				display: flex;
+				width: 15px;
+					height: 15px;
+					background: $red;
+					padding: 10px;
+					color: white;
+					border-radius: 50%;
+					margin-top: -10px;
+					margin-right: -9px;
+					position: absolute;
+					z-index: 100;
+					justify-content: center;
+					align-items: center;
+					font-size: 13px;
+			}
+			svg{
+				fill: $gray;
+				width: 24px;
+				transition: all 0.3s ease-in-out;
+				transform-origin: center;
+				&:hover{
+					fill: $primary;
+				}
+			}
+		}
+		.wishlist-icon{
+			margin-right: 10px;
+            margin-left: 10px;
+			display: flex;
+			.total-count{
+				display: flex;
+				width: 15px;
+					height: 15px;
+					background: $red;
+					padding: 10px;
+					color: white;
+					border-radius: 50%;
+					margin-top: -10px;
+					margin-right: -9px;
+					position: absolute;
+					z-index: 100;
+					justify-content: center;
+					align-items: center;
+					font-size: 13px;
+			}
+			svg{
+				fill: $gray;
+				width: 24px;
+				transition: all 0.3s ease-in-out;
+				transform-origin: center;
+				&:hover{
+					fill: $primary;
+				}
+			}
+		}
+		.btn-login{
+			color: $gray;
+			border: 1px solid $gray;
+			text-transform: capitalize;
+			min-width: 70px;
+			font-weight: 100;
+			&:hover {
+				color: $black!important;
+				text-decoration: none;
+				background: $primary;
+				border: none !important;
+			}
+			a{
+				font-weight: 200;
+			}
+		}
+		.action-link{
+			color: white;
+            margin-left: 5px;
+			margin-right: 5px;
+
+			.go-dashboard{
+				width: 36px;
+                height: 36px;
+              border: 1px solid #757575;
+                padding: 5px;
+				transition: all 0.3s ease-in-out;
+	       svg{
+		          width: 20px;
+		         fill: $primary;
+				 transform-origin: center;
+				 transition: all 0.3s ease-in-out;
+	          }
+			  &:hover{
+                 svg{
+					width: 23px;
+				 }
+			  }
+			}
+			.log-out{
+				width: 36px;
+                height: 36px;
+              border: 1px solid #757575;
+                padding: 5px;
+				
+	       svg{
+			transition: all 0.3s ease-in-out;
+			transform-origin: center;
+		          width: 20px;
+		         fill: $primary;
+				 path{
+					fill: $primary;
+				 }
+	          }
+			  &:hover{
+				svg{
+				   width: 23px;
+				}
+			 }
+			}
+
+		}
+}
+
+.bar {
+	@include object(25px,2px,$primary);
+	transition: 0.3s ease-in-out;
+	&:nth-child(2) {
+		width: 20px;
+		margin: 5px 0;
+	}
+	&:last-child {
+		width: 15px;
+	}
+}
+ 
+
+
+}
+
+
+ 
+
+/*** Responsive Menu For Smaller Device ***/
+
+@media only screen and (max-width: 600px) {
+  
+	.header2 #menu #menu-toggle {
+		display: flex!important;
+	}
+	.header2 .nav2{
+	justify-content: space-around;
+    padding-left: 20px;
+    padding-right: 20px;
+	}
+	.header2 #brand {
+		padding-left: 0px;
+	}
+	.header2 #actions{
+		padding-right: 0px;
+	}
+	.header2 #menu ul {
+		display: inline-block;
+		@include object(100vw,0,$black);
+		@include transPos(50px,null,null,null,null,null);
+		box-shadow: 0 5px 30px -4px rgba(#000, 0.2);
+		transition: all 0.3s;
+		&.showMenu {
+			height: 250px;
+			top:50px !important;
+			li {
+				height: 40px;
+				
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	.header2 #menu li {
+		@include object(50%,80px,null);
+		float: left;
+		padding-left: 40px;
+		opacity: 0;
+		visibility: hidden;
+		margin-left: 0;
+		transition: all 0.3s 0.1s;
+		&:first-child,
+		&:nth-child(2) {
+			margin-top: 40px;
+		}
+	}
+	#head-line {
+		transform: scale(0.8);
+	}
+}
+
+
+
+// shoping modal cart and whishlist
+
+.modal.show .custom-dialog ,.modal .custom-dialog {
+    transform: none;
+    right: 0px !important;
+    position: fixed!important;
+    width: 400px!important;
+	margin: 0;
+	padding: 0px;
+    /* border-radius: 6px !important; */
+	.modal-content {height: 100vh;}
+}
+.custom-dialog{
+	.modal-content{
+		.modal-header{
+			margin: 0;
+			width: 100%;
+			display: flex;
+			border-bottom: 1px solid gray;
+			padding-bottom: 20px;
+			position: relative;
+			right: 0;
+			padding: 10px;
+			background: #fff;
+			align-items: center;
+			.btn-close{
+				background: none;
+				border: none;
+				margin: 0px;
+				/* width: 30px; */
+				padding: 0px;
+				align-self: baseline;
+			}
+		}
+	}
+}
+
+.modal-cart-items ,.modal-whishlist-items {
+	position: relative;
+    
+    margin: auto;
+    /* right: 0; */
+    // width: 80%;
+    background: #fff;
+    padding: 20px 25px;
+    -webkit-transition: all 0.3sease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    transition: all 0.3 sease 0s;
+    -webkit-transform: translateY(10px);
+    -moz-transform: translateY(10px);
+    transform: translateY(10px);
+   
+    opacity: 1;
+    visibility: visible;
+    z-index: 99;
+	.dropdown-cart-header {
+		padding-bottom: 10px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid #e6e6e6;
+		span {
+			text-transform: uppercase;
+			color: #222;
+			font-size: 13px;
+			font-weight: 600;
+		}
+		a {
+			float: right;
+			text-transform: uppercase;
+			color: #222;
+			font-size: 13px;
+			font-weight: 600;
+		}
+	}
+    ul{
+		li{
+			overflow: hidden;
+			border: 1px solid $border;
+			padding-bottom: 15px;
+			margin-bottom: 15px;
+			position: relative;
+			padding: 20px;
+			border-radius: 2px;
+			width: 100%!important;
+			.remove {
+				position: absolute;
+				right: 20px;
+				top: 30px;
+				bottom: 16px;
+				margin-top: -20px;
+				height: 20px;
+				width: 20px;
+				line-height: 18px;
+				text-align: center;
+				background: #fff;
+				color: $red;
+				border-radius: 0;
+				font-size: 11px;
+				border: 1px solid #ededed;
+				svg{
+					transition: all 0.3s ease-in-out;
+					&:hover{
+						path{
+							stroke:$red;
+						}
+						
+					}
+				}
+			}
+			.cart-img {
+				float: left;
+				border: 1px solid #ededed;
+				overflow: hidden;
+				margin-right: 10px;
+				img {
+					width: 70px;
+					height: 70px;
+					border-radius: 0;
+				}
+			}
+			h4 {
+				font-size: 14px;
+				a {
+					color: $black!important;}
+			}
+			.quantity {
+				line-height: 22px;
+				font-size: 13px;
+				padding-bottom: 30px;
+			}
+		}
+	}
+
+
+	.bottom {
+		text-align: center;
+		.total {
+			overflow: hidden;
+			display: block;
+			padding-bottom: 10px;
+			 span {
+				text-transform: uppercase;
+				color: #222;
+				font-size: 13px;
+				font-weight: 600;
+				float: left;
+			}
+			.total-amount {
+				float: right;
+				font-size: 14px;
+			}
+		}
+		.btn {
+			background: $primary;
+			padding: 10px 20px;
+			display: block;
+			color: $black;
+			margin-top: 10px;
+			border-radius: 0px;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: 500;
+		}
+	}
+}
+
+
+
+.l-nav_item .hand-waving {
+	position: relative;
+	right: 0;
+	top: -2px;
+	transform: rotate(0);
+	display: block;
+	width: 22px;
+	height: 22px;
+	margin-left: 7px;
+	transform-origin: right bottom;
+}
+
+.l-nav_item:hover .hand-waving {
+	-webkit-animation: handWaving 0.3s ease-in-out 2 alternate backwards;
+	        animation: handWaving 0.3s ease-in-out 2 alternate backwards;
+}
+
+
+@-webkit-keyframes handWaving {
+
+    0% {
+        transform: rotateZ(0);
+    }
+    
+    50% {
+        transform: rotateZ(40deg);
+    }
+    
+    100% {
+        transform: rotateZ(-5deg);
+    }
+    
+    }
+    
+    @keyframes handWaving {
+    
+    0% {
+        transform: rotateZ(0);
+    }
+    
+    50% {
+        transform: rotateZ(40deg);
+    }
+    
+    100% {
+        transform: rotateZ(-5deg);
+    }
+    
+    }
+    

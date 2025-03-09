@@ -1,0 +1,122 @@
+// Body
+$body-bg: #f8fafc;
+
+// // Typography
+// $font-family-sans-serif: 'Nunito', sans-serif;
+// $font-size-base: 0.9rem;
+// $line-height-base: 1.6;
+
+ 
+
+$primary:#EBCDBF;
+$secondary:#DCAFAC;
+$gray: #757575;
+$gray-fill:#F6F7FB;
+$gold:#c7a016;
+$text-gray:#57667d;
+ 
+$border:#CAD2DF;
+$bg:#F8FAFB;
+$familyR: 'Poppins', sans-serif;
+$familyL: 'Poppins', sans-serif;
+$familyAR: 'Poppins', sans-serif;
+ 
+$btn-radius:2px;
+$black:#000;
+$white:#fff;
+//denotive colours
+$red:#ff6161;
+$yellow: #EC981D;
+$orange:#F8570B;
+$green: #43B38D;
+.confirmed{
+  background: $green;
+  padding: 5px;
+  width: 100px;
+  height: 30px;
+  border-radius: 35px;
+  color: $white;
+  text-align: center;
+}
+.inreview{
+  background: $yellow;
+  padding: 5px;
+  width: 100px;
+  height: 30px;
+  border-radius: 35px;
+  color: $white;
+  text-align: center;
+}
+.low{
+  background: $bg;
+  padding: 5px;
+  width: 100px;
+  height: 30px;
+  border-radius: 35px;
+  color: $text-gray;
+  text-align: center;
+}
+.btn{
+  border-radius: 0px!important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+body{
+ background: $white!important;
+ font-family: $familyR!important;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0!important;
+}
+@font-face {
+  font-family: $familyR;
+  src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+}
+ 
+ 
+//////////////// arabic fonts ///////////
+ 
+ 
+ 
+/// dropdown
+.dropdown-menu {
+	opacity: 0.0001;
+		transition: 0.3s cubic-bezier(.2, 0, 0, 1.6);
+		transform: scale(0.6) translateY(-20%);
+		-webkit-transform: scale(0.6) translateY(-20%);
+
+  &.show{
+ 
+      opacity: 0.9999;
+      transform: none;
+      -webkit-transform: none;
+    
+  }
+  &::before {
+		content: "";
+		position: absolute;
+		height: 12px;
+		width: 12px;
+		border: solid 1px #DCDCDC;
+		border-width: 1px 0 0 1px;
+		transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		background-color: #fff;
+		top: -7px;
+		left: 32px;
+	}
+}
+
+
+
+
+
+ 

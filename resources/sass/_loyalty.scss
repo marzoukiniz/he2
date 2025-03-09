@@ -1,0 +1,213 @@
+@use "../custom" as *;
+.loyalty-page{
+    .section_title{
+        text-align: center;
+    margin-bottom: 15px;
+    }
+    .tiers_display{
+        background: $bg;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .process_display{
+        background: $white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .process_row{
+            align-items: center;
+        }
+        .section_title{
+            text-align: start;
+        margin-bottom: 15px;
+        }
+        .process{
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .card {
+                width: 48%;
+                background: $bg;
+                padding: 15px;
+                border: none;
+                height: 220px;
+                padding-left: 25px;
+               .title{
+                font-size: 1rem;
+                color: $black;
+                margin-top: 15px;
+
+                margin-bottom: 8px;
+                text-transform: uppercase;
+               }
+               .description{
+                font-family: $familyL;
+                font-size: 0.9rem;
+                color: $black;
+                margin-top: 8px;
+                margin-bottom: 8px;
+               }
+               img,.p-svg{
+                transition: transform 0.5s ease-in-out;
+               
+                &:hover{
+                 
+                    animation: rotation 1s  linear;
+
+                }
+               }
+               &:hover{
+                img,.p-svg{
+                    animation: rotation 3s infinite linear;
+                }
+               }
+            }
+            .card2{
+                width: 100%!important;
+                
+            }
+        }
+        .imgs{
+            text-align: end;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            .big-img{
+              
+               border-left: 1px solid $primary-green;
+               padding-left: 20px;
+               border-top: 1px solid $primary-green;
+               padding-top: 20px;
+            } 
+            .small-img {
+                border:1px solid $primary-green;
+                
+                margin-right: -100px;
+                margin-bottom: -50px!important;
+                z-index: 5;
+            }
+        }
+    }
+    .loyalty{
+        text-align: center;
+        padding: 15px;
+        margin: 10px;
+        .btns-row {
+            justify-content: center;
+            a{
+                margin: 10px;
+            }
+        }
+       
+    } 
+
+    .benefits{
+        background: $bg;
+        padding: 15px;
+        .benefits_head{
+            padding: 5px;
+            width: 24%;
+            margin-right: 20px;
+            .benefits_title{
+                background: $black;
+                color: $white;
+                padding: 10px;
+                text-align: center;
+                height: 56px;
+            }
+            .benefits_item{
+                padding: 10px;
+                /* border: 1px solid #CAD2DF; */
+                margin: 2px 2px 2px 2px;
+                text-align: center;
+                font-size: 13px;
+                height: 56px;
+                background: #fff;
+            }
+        }
+        .benefits_body{
+            width: 20%;
+            padding: 5px;
+            .benefits_title{
+                background: $black;
+                color: $white;
+                padding: 10px;
+                text-align: center;
+                height: 76px;
+                border-radius: 8px;
+      
+                &.one{
+                    background: #a3e5c6;
+                }
+                &.two{
+                    background: #49d38c;
+                }
+                &.three{
+                    background: #f5cc42;
+                }
+                &.four{
+                    background: #c09747;
+                }
+                svg{
+                    margin-left: 5px;
+                    margin-right: 5px;
+                }
+            }
+            .benefits_item{
+              
+                padding: 10px;
+                /* border: 1px solid #CAD2DF; */
+                text-align: center;
+               margin: 2px;
+                font-size: 13px;
+                height: 56px;
+                background: $white;
+                
+                // box-shadow: 1px 3px 0.3rem 1px rgb(147 147 147 / 7%);
+            }
+
+            .benefits_table{
+                width: 100%;
+                border-color: $border;
+                th{
+                     
+                    color: $white;
+                    font-size: 14px;
+                    font-family: $familyR;
+                    font-weight: 100;
+                    padding: 10px;
+                     height: 44px;
+                    &:first-child{
+                        background: #A7A8A7;
+                    }
+                    &:nth-child(2){
+                        background: #D2AE4E;
+                    }
+                    &:nth-child(3){
+                        background: #C99F60;
+                    }
+                    &:nth-child(4){
+                        background: #444747;
+                    }
+                    svg{
+                        margin-left: 5px;
+                        margin-right: 5px;
+                    }
+                }
+                tr{
+                    td{
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }

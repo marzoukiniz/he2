@@ -1,0 +1,258 @@
+ 
+ @use "../custom" as *;
+ .modal.show{
+  z-index: 3001!important;
+  .modal-dialog{min-width: 600px;
+    width: auto;
+  }
+  .modal-content{
+    border-radius: 0px;
+    border: none;
+    // background: transparent;
+    margin-top: 80px;
+
+       .modal-body{
+        .tab-content{
+          background: white;
+          #portfolio{
+            padding: 100px;
+          }
+        }
+       }
+    
+  }
+ }
+* {
+  box-sizing: border-box;
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+}
+
+.signup-form {
+  width: 95%;
+  height: auto;
+  min-height: 500px;
+   
+  border-radius: 3px;
+  
+  position: relative;
+  display: flex;
+  .form_wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+    .radio {
+      display: none;
+    }
+    .tab {
+      width: 50%;
+      border: solid 2px #f1f1f1;
+      height: 40px;
+      border-radius: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      user-select: none;
+      font-family:  $familyR;
+      text-transform: capitalize;
+      color: $text-gray;
+      &.login_tab {
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+      &.signup_tab {
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+    }
+    .shape {
+      background: linear-gradient(45deg, $primary, $gray) no-repeat center;
+      width: 50%;
+      height: calc(40px - 1px);
+      border-radius: 0px;
+      position: absolute;
+      top: 55.5px;
+      left: 0px;
+      opacity: 0.9;
+      transition: all 0.4s ease;
+      &:hover {
+        background: linear-gradient(-45deg, $primary, $gray) no-repeat center;
+      }
+    }
+    #login {
+      &:checked ~ {
+        .shape {
+          left: 0px;
+         top: 0px;
+        }
+        .login_tab {
+          border-color: transparent;
+          z-index: 1;
+          color: white;
+        }
+        .tile {
+          .signup {
+            display: none;
+          }
+        }
+        .form_wrap {
+          transform: translateX(0);
+          .signup_form {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    #signup {
+      &:checked ~ {
+        .shape {
+          left: 50%;
+          top: 0px;
+        }
+        .signup_tab {
+          border-color: transparent;
+          z-index: 1;
+          color: white;
+        }
+        .tile {
+          .login {
+            display: none;
+          }
+        }
+        .form_wrap {
+          transform: translateX(-100%);
+          .login_form {
+            opacity: 0;
+          }
+        }
+      }
+    }
+    a {
+      color: $gray;
+      text-decoration: none;
+      transition: all 0.3s linear;
+      &:hover {
+        color: $primary;
+      }
+    }
+    .form_wrap {
+      display: flex;
+      width: 100%;
+      flex: 0 0 100%;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+
+      .form_fild {
+        // text-align: center;
+        width: 90%;
+        flex: 0 0 100%;
+        transition: all 0.5s ease;
+        &.login_form{
+         
+          display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2{
+      font-family: $familyR;
+    }
+        }
+        .input_group {
+          width: auto;
+          margin-bottom: 12px;
+          .input,.form-select {
+            border: solid $border 1px;
+            border-radius: 0px;
+            width: 300px;
+            max-width: 380px;
+            height: 40px;
+            padding: 5px 10px;
+            font-family: $familyR;
+            font-size: 17px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s linear;
+            &::placeholder {
+              color: #8C8C8C;
+            }
+            &:hover {
+              border-color: $primary;
+            }
+            &:focus {
+              border-color: $primary;
+            }
+          }
+          label{
+            display: block;
+          }
+        }
+        .forgot {
+          display: block;
+          margin-bottom: 15px;
+          padding: 0px 2px;
+        }
+        .right-btn{
+          text-align: end;
+        }
+        .form-btn {
+          width: 200px;
+          height: 40px;
+          margin-bottom: 5px;
+          border: none;
+          outline: none;
+          font-family: $familyR;
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: 500;
+          letter-spacing: 0.8px;
+          color: white;
+          background: linear-gradient(45deg, $primary, $gray) no-repeat center;
+          border-radius: 0px;
+          // display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s linear;
+          &:hover {
+            background: linear-gradient(-45deg, $primary, $gray) no-repeat
+              center;
+          }
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+        .not_mem {
+          text-align: center;
+          label {
+            pointer-events: none;
+            span {
+              pointer-events: all;
+              color: $gray;
+              text-decoration: none;
+              transition: all 0.3s linear;
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
