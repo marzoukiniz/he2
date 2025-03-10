@@ -72,7 +72,7 @@
                                     @foreach($colors as $color)
                                                                                                                                                                                                                                                                                                                                                                                                                                             <li>
                                             <button class="color-btn" data-product="{{ $product->id }}" data-color="{{ $color->color }}"
-                                                style="background-color: {{ $color->color }};">
+                                                style="background-color: {{ $color->color }};" onclick="handleColorButtonClick(this)">
                                             </button>
                                         </li>
                                     @endforeach
@@ -301,30 +301,7 @@
 
 <!-- Modal end -->
 
-<!-- JavaScript for Handling Click Events -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".color-btn").forEach(button => {
-            button.addEventListener("click", function () {
-                let productId = this.getAttribute("data-product");
-                let selectedColor = this.getAttribute("data-color");
-                let container = document.getElementById(`length-stock-${productId}`);
 
-                fetch(`/get-product-variations?product_id=${productId}&color=${selectedColor}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        let html = "<ul>";
-                        data.variations.forEach(variation => {
-                            html += `<li class="length">${variation.length}</li> <li class="stock"> ${variation.stock}</li>`;
-                        });
-                        html += "</ul>";
-                        container.innerHTML = html;
-                    })
-                    .catch(error => console.error("Error fetching variations:", error));
-            });
-        });
-    });
-</script>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
@@ -335,9 +312,5 @@ var swiper = new Swiper('.Slider-container', {
     loop: true,
 });
 
-// Force Swiper to recalculate its size after a small delay to make sure elements are fully loaded
-setTimeout(() => {
-    swiper.update();
-}, 500); // 500ms delay, adjust as needed
-
+ 
   </script>

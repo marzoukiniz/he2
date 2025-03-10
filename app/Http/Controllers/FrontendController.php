@@ -319,6 +319,7 @@ public function updateOrderStatus(Request $request, $order_id) {
                 return redirect()->route('product-lists',$catURL.$brandURL.$priceRangeURL.$showURL.$sortByURL);
             }
     }
+ 
     public function colorFilter(Request $request) {
         if (!$request->ajax()) {
             return response()->json(['error' => true, 'message' => 'Invalid request'], 405);
@@ -327,17 +328,39 @@ public function updateOrderStatus(Request $request, $order_id) {
         try {
             $products = Product::query();
     
-            // Check if no color is selected (color array is empty or not present)
-            if ($request->has('color') && !empty($request->color)) {
+            // Check if both colors and lengths are selected
+            if (($request->has('color') && !empty($request->color)) && 
+                ($request->has('length') && !empty($request->length))) {
+                
+                $selectedColors = is_array($request->color) ? $request->color : explode(',', $request->color);
+                $selectedLengths = is_array($request->length) ? $request->length : explode(',', $request->length);
+    
+                // Filter products by selected colors and lengths
+                $products->whereHas('colors', function ($query) use ($selectedColors) {
+                    $query->whereIn('color', $selectedColors);
+                })
+                ->whereHas('lengths', function ($query) use ($selectedLengths) {
+                    $query->whereIn('length', $selectedLengths);
+                });
+    
+            } elseif ($request->has('color') && !empty($request->color)) {
+                // Filter only by color if lengths are not selected
                 $selectedColors = is_array($request->color) ? $request->color : explode(',', $request->color);
     
-                // Filter products by the selected colors
                 $products->whereHas('colors', function ($query) use ($selectedColors) {
                     $query->whereIn('color', $selectedColors);
                 });
+    
+            } elseif ($request->has('length') && !empty($request->length)) {
+                // Filter only by length if colors are not selected
+                $selectedLengths = is_array($request->length) ? $request->length : explode(',', $request->length);
+    
+                $products->whereHas('lengths', function ($query) use ($selectedLengths) {
+                    $query->whereIn('length', $selectedLengths);
+                });
             }
     
-            // Get the paginated results (with or without color filter)
+            // Get the paginated results (with or without filters)
             $products = $products->paginate(9);
     
             // Return the filtered products or the default list of products
@@ -352,7 +375,6 @@ public function updateOrderStatus(Request $request, $order_id) {
             ], 500);
         }
     }
-    
     
 
     // public function colorFilter(Request $request) {

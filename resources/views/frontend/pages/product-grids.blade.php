@@ -48,7 +48,7 @@
             <input type="checkbox" id="color-{{ $loop->index }}" 
                    name="color[]" 
                    value="{{ $color }}" 
-                   class="form-check-input color-filter"
+                   class="form-check-input filter-option color-filter"
                    {{ in_array($color, request('color', [])) ? 'checked' : '' }}>
             <label for="color-{{ $loop->index }}" class="form-check-label">
                 {{ ucfirst($color) }}
@@ -70,44 +70,77 @@
                         
                         </div>
 	                        <div class="collapse show" id="filter_2">
-	                            <ul>
-	                                <li>
-	                                    <label class="container_check">Blue <small>06</small>
-	                                        <input type="checkbox">
-	                                        <span class="checkmark"></span>
-	                                    </label>
-	                                </li>
-	                                <li>
-	                                    <label class="container_check">Red <small>12</small>
-	                                        <input type="checkbox">
-	                                        <span class="checkmark"></span>
-	                                    </label>
-	                                </li>
-	                                <li>
-	                                    <label class="container_check">Orange <small>17</small>
-	                                        <input type="checkbox">
-	                                        <span class="checkmark"></span>
-	                                    </label>
-	                                </li>
-	                                <li>
-	                                    <label class="container_check">Black <small>43</small>
-	                                        <input type="checkbox">
-	                                        <span class="checkmark"></span>
-	                                    </label>
-	                                </li>
-	                            </ul>
+	                              <!-- Single Widget -->
+                                  <div class="single-widget category">
+                                    <h3 class="title">Categories</h3>
+                                    <ul class="categor-list">
+										@php
+											// $category = new Category();
+											$menu=App\Models\Category::getAllParentWithChild();
+										@endphp
+										@if($menu)
+										<li>
+											@foreach($menu as $cat_info)
+													@if($cat_info->child_cat->count()>0)
+														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
+															<ul>
+																@foreach($cat_info->child_cat as $sub_menu)
+																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
+																@endforeach
+															</ul>
+														</li>
+													@else
+														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
+													@endif
+											@endforeach
+										</li>
+										@endif
+                                        {{-- @foreach(Helper::productCategoryList('products') as $cat)
+                                            @if($cat->is_parent==1)
+												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
+											@endif
+                                        @endforeach --}}
+                                    </ul>
+                                </div>
+                                <!--/ End Single Widget -->
+	                        </div>
+	                    </div>
+
+
+                          <!-- /filter_type -->
+	                    <div class="filter_type version_2">
+                        <div class="filter-title"><a href="#filter_4" data-bs-toggle="collapse" class="opened">Brands</a>
+                            <svg  class="SvgCaret" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
+                        
+                        </div>
+	                        <div class="collapse show" id="filter_4">
+
+
+                                   <!-- Single Widget -->
+                                   <div class="single-widget category">
+                                    <h3 class="title">Brands</h3>
+                                    <ul class="categor-list">
+                                        @php
+                                            $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
+                                        @endphp
+                                        @foreach($brands as $brand)
+                                            <li><a href="{{route('product-brand',$brand->slug)}}">{{$brand->title}}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <!--/ End Single Widget -->
 	                        </div>
 	                    </div>
 	                    <!-- /filter_type -->
 	                    <div class="filter_type version_2">
-                        <div class="filter-title"><a href="#filter_2" data-bs-toggle="collapse" class="opened">Brands</a>
+                        <div class="filter-title"><a href="#filter_3" data-bs-toggle="collapse" class="opened">Lengths</a>
                             <svg  class="SvgCaret" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
                         
                         </div>
 	                        <div class="collapse show" id="filter_3" style="">
 	                           <!-- Length Filter -->
 <div class="form-group mt-3">
-    <label>Filter by Length:</label>
+    
     <div class="d-flex flex-wrap">
         @foreach ($lengths as $length)
             @if (!is_null($length) && $length !== '')
@@ -235,45 +268,13 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     
-
-
- 
- 
-<script>
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.color-filter').forEach(input => {
-        input.addEventListener('change', function () {
-            let selectedColors = [];
-            document.querySelectorAll('.color-filter:checked').forEach(checked => {
-                selectedColors.push(checked.value);
-            });
-
-            fetch("{{ route('color.filter') }}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ color: selectedColors })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Response from server:", data); // Debugging
-                if (data.success) {
-                    document.getElementById('product-container').innerHTML = data.html;
-                } else {
-                    console.error('Error:', data.message);
-                }
-            })
-            .catch(error => console.error('AJAX Error:', error));
-        });
-    });
-});
-
-  
+    <script>
+    var colorFilterRoute = "{{ route('color.filter') }}";
 </script>
+
+    <script src="{{ asset('frontend/js/products.js') }}"></script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     // Get all filter headers
