@@ -61,77 +61,9 @@
 </div>
 
 	                        </div>
-	                        <!-- /filter_type -->
-	                    </div>
-	                    <!-- /filter_type -->
-	                    <div class="filter_type version_2">
-                        <div class="filter-title"><a href="#filter_2" data-bs-toggle="collapse" class="opened">Categories</a>
-                            <svg  class="SvgCaret" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
-                        
-                        </div>
-	                        <div class="collapse show" id="filter_2">
-	                              <!-- Single Widget -->
-                                  <div class="single-widget category">
-                                    <h3 class="title">Categories</h3>
-                                    <ul class="categor-list">
-										@php
-											// $category = new Category();
-											$menu=App\Models\Category::getAllParentWithChild();
-										@endphp
-										@if($menu)
-										<li>
-											@foreach($menu as $cat_info)
-													@if($cat_info->child_cat->count()>0)
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a>
-															<ul>
-																@foreach($cat_info->child_cat as $sub_menu)
-																	<li><a href="{{route('product-sub-cat',[$cat_info->slug,$sub_menu->slug])}}">{{$sub_menu->title}}</a></li>
-																@endforeach
-															</ul>
-														</li>
-													@else
-														<li><a href="{{route('product-cat',$cat_info->slug)}}">{{$cat_info->title}}</a></li>
-													@endif
-											@endforeach
-										</li>
-										@endif
-                                        {{-- @foreach(Helper::productCategoryList('products') as $cat)
-                                            @if($cat->is_parent==1)
-												<li><a href="{{route('product-cat',$cat->slug)}}">{{$cat->title}}</a></li>
-											@endif
-                                        @endforeach --}}
-                                    </ul>
-                                </div>
-                                <!--/ End Single Widget -->
-	                        </div>
-	                    </div>
 
 
-                          <!-- /filter_type -->
-	                    <div class="filter_type version_2">
-                        <div class="filter-title"><a href="#filter_4" data-bs-toggle="collapse" class="opened">Brands</a>
-                            <svg  class="SvgCaret" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
-                        
-                        </div>
-	                        <div class="collapse show" id="filter_4">
-
-
-                                   <!-- Single Widget -->
-                                   <div class="single-widget category">
-                                    <h3 class="title">Brands</h3>
-                                    <ul class="categor-list">
-                                        @php
-                                            $brands=DB::table('brands')->orderBy('title','ASC')->where('status','active')->get();
-                                        @endphp
-                                        @foreach($brands as $brand)
-                                            <li><a href="{{route('product-brand',$brand->slug)}}">{{$brand->title}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <!--/ End Single Widget -->
-	                        </div>
-	                    </div>
-	                    <!-- /filter_type -->
+                                 <!-- /filter_type -->
 	                    <div class="filter_type version_2">
                         <div class="filter-title"><a href="#filter_3" data-bs-toggle="collapse" class="opened">Lengths</a>
                             <svg  class="SvgCaret" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
@@ -139,32 +71,123 @@
                         </div>
 	                        <div class="collapse show" id="filter_3" style="">
 	                           <!-- Length Filter -->
-<div class="form-group mt-3">
-    
-    <div class="d-flex flex-wrap">
-        @foreach ($lengths as $length)
-            @if (!is_null($length) && $length !== '')
-                <div class="form-check me-2">
-                    <input type="checkbox" id="length-{{ $loop->index }}" 
-                           name="length[]" 
-                           value="{{ $length }}" 
-                           class="form-check-input filter-option length-filter"
-                           {{ in_array($length, request('length', [])) ? 'checked' : '' }}>
-                    <label for="length-{{ $loop->index }}" class="form-check-label">
-                        {{ ucfirst($length) }} cm
-                    </label>
-                </div>
-            @endif
-        @endforeach
+                                <div class="form-group mt-3">
+                                    
+                                    <div class="d-flex flex-wrap">
+                                        @foreach ($lengths as $length)
+                                            @if (!is_null($length) && $length !== '')
+                                                <div class="form-check me-2">
+                                                    <input type="checkbox" id="length-{{ $loop->index }}" 
+                                                        name="length[]" 
+                                                        value="{{ $length }}" 
+                                                        class="form-check-input filter-option length-filter"
+                                                        {{ in_array($length, request('length', [])) ? 'checked' : '' }}>
+                                                    <label for="length-{{ $loop->index }}" class="form-check-label">
+                                                        {{ ucfirst($length) }} cm
+                                                    </label>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                                                            </div>
+	                    </div>
+
+
+                                                    <!-- /filter_type -->
+                            <div class="filter_type version_2">
+                                <div class="filter-title">
+                                    <a href="#filter_2" data-bs-toggle="collapse" class="opened">Catégories</a>
+                                    <svg class="SvgCaret" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
+                                    </svg>
+                                </div>
+                                <div class="collapse show" id="filter_2">
+                                    <div class="form-group mt-3">
+                                        <div class="d-flex flex-wrap">
+                                            @php
+                                                $categories = App\Models\Category::getAllParentWithChild();
+                                            @endphp
+                                            @if($categories)
+                                                @foreach($categories as $category)
+                                                    <div class="form-check me-2">
+                                                        <input type="checkbox" id="cat-{{ $category->id }}" 
+                                                            name="category[]" 
+                                                            value="{{ $category->slug }}" 
+                                                            class="form-check-input filter-option category-filter"
+                                                            {{ in_array($category->slug, request('category', [])) ? 'checked' : '' }}>
+                                                        <label for="cat-{{ $category->id }}" class="form-check-label">
+                                                            {{ ucfirst($category->title) }}
+                                                        </label>
+                                                    </div>
+
+                                                    @if($category->child_cat->count() > 0)
+                                                        <ul>
+                                                            @foreach($category->child_cat as $subCategory)
+                                                                <li>
+                                                                    <div class="form-check me-2">
+                                                                        <input type="checkbox" id="sub-cat-{{ $subCategory->id }}" 
+                                                                            name="category[]" 
+                                                                            value="{{ $subCategory->slug }}" 
+                                                                            class="form-check-input filter-option category-filter"
+                                                                            {{ in_array($subCategory->slug, request('category', [])) ? 'checked' : '' }}>
+                                                                        <label for="sub-cat-{{ $subCategory->id }}" class="form-check-label">
+                                                                            {{ ucfirst($subCategory->title) }}
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+	              
+
+
+
+                          <!-- /filter_type -->
+	              <!-- /filter_type -->
+<div class="filter_type version_2">
+    <div class="filter-title">
+        <a href="#filter_brand" data-bs-toggle="collapse" class="opened">Brands</a>
+        <svg class="SvgCaret" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
+        </svg>
+    </div>
+    <div class="collapse show" id="filter_brand">
+        <div class="form-group mt-3">
+            <div class="d-flex flex-wrap">
+                @php
+                    $brands = App\Models\Brand::all();
+                @endphp
+                @if($brands)
+                    @foreach($brands as $brand)
+                        <div class="form-check me-2">
+                            <input type="checkbox" id="brand-{{ $brand->id }}" 
+                                name="brand[]" 
+                                value="{{ $brand->id }}" 
+                                class="form-check-input filter-option brand-filter"
+                                {{ in_array($brand->id, request('brand', [])) ? 'checked' : '' }}>
+                            <label for="brand-{{ $brand->id }}" class="form-check-label">
+                                {{ ucfirst($brand->title) }}
+                            </label>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
     </div>
 </div>
-	                        </div>
-	                    </div>
+
+	               
 	                  
 	                  
-	                    <div class="buttons">
-	                        <a href="#0" class="btn_1">Filter</a> <a href="#0" class="btn_1 gray">Reset</a>
-	                    </div>
+	                  
 	                </div>
            
             </div>

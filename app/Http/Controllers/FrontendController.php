@@ -319,7 +319,6 @@ public function updateOrderStatus(Request $request, $order_id) {
                 return redirect()->route('product-lists',$catURL.$brandURL.$priceRangeURL.$showURL.$sortByURL);
             }
     }
- 
     public function colorFilter(Request $request) {
         if (!$request->ajax()) {
             return response()->json(['error' => true, 'message' => 'Invalid request'], 405);
@@ -328,35 +327,41 @@ public function updateOrderStatus(Request $request, $order_id) {
         try {
             $products = Product::query();
     
-            // Check if both colors and lengths are selected
-            if (($request->has('color') && !empty($request->color)) && 
-                ($request->has('length') && !empty($request->length))) {
-                
-                $selectedColors = is_array($request->color) ? $request->color : explode(',', $request->color);
-                $selectedLengths = is_array($request->length) ? $request->length : explode(',', $request->length);
+            // Check if categories, colors, lengths, and brands are selected
+            $hasCategories = $request->has('category') && !empty($request->category);
+            $hasColors = $request->has('color') && !empty($request->color);
+            $hasLengths = $request->has('length') && !empty($request->length);
+            $hasBrands = $request->has('brand') && !empty($request->brand);
     
-                // Filter products by selected colors and lengths
+            // Convert request parameters into arrays
+            $selectedCategories = $hasCategories ? (is_array($request->category) ? $request->category : explode(',', $request->category)) : [];
+            $selectedColors = $hasColors ? (is_array($request->color) ? $request->color : explode(',', $request->color)) : [];
+            $selectedLengths = $hasLengths ? (is_array($request->length) ? $request->length : explode(',', $request->length)) : [];
+            $selectedBrands = $hasBrands ? (is_array($request->brand) ? $request->brand : explode(',', $request->brand)) : [];
+    
+            // Apply filters based on the selected options
+            if ($hasCategories) {
+                $products->whereHas('category', function ($query) use ($selectedCategories) {
+                    $query->whereIn('slug', $selectedCategories);
+                });
+            }
+    
+            if ($hasColors) {
                 $products->whereHas('colors', function ($query) use ($selectedColors) {
                     $query->whereIn('color', $selectedColors);
-                })
-                ->whereHas('lengths', function ($query) use ($selectedLengths) {
-                    $query->whereIn('length', $selectedLengths);
                 });
+            }
     
-            } elseif ($request->has('color') && !empty($request->color)) {
-                // Filter only by color if lengths are not selected
-                $selectedColors = is_array($request->color) ? $request->color : explode(',', $request->color);
-    
-                $products->whereHas('colors', function ($query) use ($selectedColors) {
-                    $query->whereIn('color', $selectedColors);
-                });
-    
-            } elseif ($request->has('length') && !empty($request->length)) {
-                // Filter only by length if colors are not selected
-                $selectedLengths = is_array($request->length) ? $request->length : explode(',', $request->length);
-    
+            if ($hasLengths) {
                 $products->whereHas('lengths', function ($query) use ($selectedLengths) {
                     $query->whereIn('length', $selectedLengths);
+                });
+            }
+    
+            // Apply brand filter if selected
+            if ($hasBrands) {
+                $products->whereHas('brand', function ($query) use ($selectedBrands) {
+                    $query->whereIn('id', $selectedBrands);
                 });
             }
     
@@ -376,7 +381,7 @@ public function updateOrderStatus(Request $request, $order_id) {
         }
     }
     
-
+    
     // public function colorFilter(Request $request) {
     //     // Initialize query builder
     //     $products = Product::query();

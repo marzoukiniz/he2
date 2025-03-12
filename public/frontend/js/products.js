@@ -18,16 +18,14 @@ function handleColorButtonClick(button) {
 }
 
 
-
-
-
-
-// Function to filter products by color and length
+// Function to filter products by category, color, length, and brand
 function CheckColorFilter() {
     document.querySelectorAll('.filter-option').forEach(input => {
         input.addEventListener('change', function () {
             let selectedColors = [];
             let selectedLengths = [];
+            let selectedCategories = [];
+            let selectedBrands = [];
 
             // Get selected colors
             document.querySelectorAll('.color-filter:checked').forEach(checked => {
@@ -39,7 +37,17 @@ function CheckColorFilter() {
                 selectedLengths.push(checked.value);
             });
 
-            // Send AJAX request with both filters
+            // Get selected categories
+            document.querySelectorAll('.category-filter:checked').forEach(checked => {
+                selectedCategories.push(checked.value);
+            });
+
+            // Get selected brands
+            document.querySelectorAll('.brand-filter:checked').forEach(checked => {
+                selectedBrands.push(checked.value);
+            });
+
+            // Send AJAX request with all filters (categories, colors, lengths, and brands)
             fetch(colorFilterRoute, {
                 method: 'POST',
                 headers: {
@@ -47,7 +55,12 @@ function CheckColorFilter() {
                     'X-Requested-With': 'XMLHttpRequest',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ color: selectedColors, length: selectedLengths })
+                body: JSON.stringify({ 
+                    color: selectedColors, 
+                    length: selectedLengths, 
+                    category: selectedCategories, 
+                    brand: selectedBrands // Add brand filter here
+                })
             })
             .then(response => response.json())
             .then(data => {
