@@ -90,7 +90,7 @@ Route::get('/get-product-variations', function (Request $request) {
     $variations = DB::table('product_lengths')
         ->where('product_id', $product_id)  // Ensuring the correct product
         ->where('color_id', $colorEntry->color_id) // Matching color
-        ->select('length', 'additional_cost', 'stock')
+        ->select('length_id','length','color_id', 'additional_cost', 'stock')
         ->get();
 
     return response()->json(['variations' => $variations]);
@@ -98,7 +98,10 @@ Route::get('/get-product-variations', function (Request $request) {
 
 
 // Cart section
-    Route::get('/add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add-to-cart')->middleware('user');
+Route::get('/add-to-cart', [CartController::class, 'addToCart'])
+->name('add-to-cart')
+->middleware('user');
+
     Route::post('/add-to-cart', [CartController::class, 'singleAddToCart'])->name('single-add-to-cart')->middleware('user');
     Route::get('cart-delete/{id}', [CartController::class, 'cartDelete'])->name('cart-delete');
     Route::post('cart-update', [CartController::class, 'cartUpdate'])->name('cart.update');

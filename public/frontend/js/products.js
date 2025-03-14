@@ -1,15 +1,31 @@
-//   when click on each color
+// Function to handle color button click
 function handleColorButtonClick(button) {
     let productId = button.getAttribute("data-product");
     let selectedColor = button.getAttribute("data-color");
     let container = document.getElementById(`length-stock-${productId}`);
 
+    // Remove "active" class from all color buttons
+    let colorButtons = document.querySelectorAll(`.color-btn[data-product="${productId}"]`);
+    colorButtons.forEach(btn => btn.classList.remove("active"));
+
+    // Add "active" class to the clicked color button
+    button.classList.add("active");
+
+    // Fetch product variations based on the selected color
     fetch(`/get-product-variations?product_id=${productId}&color=${selectedColor}`)
         .then(response => response.json())
         .then(data => {
             let html = "<ul>";
             data.variations.forEach(variation => {
-                html += `<li class="length">${variation.length}</li> <li class="stock"> ${variation.stock}</li>`;
+                console.log(variation);
+                html += `<li>
+                            <a class="length" data-additional-cost="${variation.additional_cost}" 
+                                onclick="updatePrice(this, ${productId})" data-length-id="${variation.length_id}">
+                                ${variation.length}
+                            </a> 
+                             <input type="hidden" name="color_id" value="${variation.color_id}">
+                            <span class="stock">Stock: ${variation.stock}</span>
+                         </li>`;
             });
             html += "</ul>";
             container.innerHTML = html;
@@ -17,6 +33,37 @@ function handleColorButtonClick(button) {
         .catch(error => console.error("Error fetching variations:", error));
 }
 
+// Function to update price and set active class for length buttons
+function updatePrice(button, productId) {
+    let additionalCost = parseFloat(button.getAttribute("data-additional-cost")) || 0;
+    let basePriceElement = document.getElementById(`price-${productId}`);
+    let basePrice = parseFloat(basePriceElement.getAttribute("data-base-price"));
+
+    // Calculate new price
+    let newPrice = basePrice + additionalCost;
+
+    // Update price display
+    basePriceElement.textContent = `QAR ${newPrice.toFixed(1)}`;
+
+    // Remove "active" class from all length buttons
+    let buttons = document.querySelectorAll(`#length-stock-${productId} .length`);
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    // Add "active" class to the clicked button
+    button.classList.add("active");
+// Remove all existing hidden input fields with name="l-id"
+document.querySelectorAll(`#length-stock-${productId} input[name="l_id"]`).forEach(input => input.remove());
+ // Get length ID from button attribute
+ let lengthId = button.getAttribute("data-length-id");
+     // Create a new hidden input field
+     let hiddenInput = document.createElement("input");
+     hiddenInput.type = "hidden";
+     hiddenInput.name = "l_id";
+     hiddenInput.value = lengthId;
+ 
+     // Insert the hidden input field right after the clicked button
+     button.insertAdjacentElement("afterend", hiddenInput);
+}
 
 // Function to filter products by category, color, length, and brand
 function CheckColorFilter() {

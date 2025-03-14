@@ -336,7 +336,15 @@
                 li{
                     transition: transform 0.3s ease;
                 }
-             
+             .length{
+                background: $white;
+                border-radius: 2px;
+                height: 34px;
+                width: 34px;
+                &.active{
+                    border: 2px solid green;
+                }
+             }
             }
            
         }

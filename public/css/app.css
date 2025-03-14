@@ -941,6 +941,9 @@ a {
   border: 1px solid #ccc;
   cursor: pointer;
 }
+.single-product .product-content .variations .color-options .color-btn.active {
+  border: 2px solid green;
+}
 .single-product .product-content .variations .length-stock-container ul {
   margin-bottom: 5px;
   padding: 0;
@@ -1549,6 +1552,15 @@ body {
 }
 .single-product .product-content .variations .length-stock-container ul li {
   transition: transform 0.3s ease;
+}
+.single-product .product-content .variations .length-stock-container ul .length {
+  background: #fff;
+  border-radius: 2px;
+  height: 34px;
+  width: 34px;
+}
+.single-product .product-content .variations .length-stock-container ul .length.active {
+  border: 2px solid green;
 }
 .single-product:hover .button-head {
   bottom: 0px !important;
