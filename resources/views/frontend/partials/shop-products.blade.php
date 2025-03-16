@@ -11,9 +11,9 @@
                             @endphp
                             <img class="default-img" src="{{ $photo[0] }}" alt="{{ $photo[0] }}">
                             <img class="hover-img" src="{{ $photo[0] }}" alt="{{ $photo[0] }}">
-                            @if ($product->discount)
+                            <!-- @if ($product->discount)
                                 <span class="price-dec">{{ $product->discount }} % Off</span>
-                            @endif
+                            @endif -->
 
                         </a>
                         <div class="button-head">
@@ -153,36 +153,32 @@
                         <div class="row no-gutters">
                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <!-- Product Slider -->
-                                <div class="product-gallery">
-                                    <div class="quickview-slider-active">
+                               
+                                <div class="pgallery">                
+    <div class="swiper-container pgallery-slider"  >
+        <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample010.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample005.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample012.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample007.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample008.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample009.jpg" alt=""></div>
+        </div>
+       
+    </div>
 
-                                    </div>
-                                </div>
-
-
-                                <div class="swiper Slider-container" style="width: 270px; height: 340px;">
-                                    <div class="swiper-wrapper" style="width: 270px; height: 340px;">
-                                        <div class="swiper-slide" style="width: 270px; height: 340px;">
-                                            <img src="{{ asset('storage/photos/1/11.png') }}" alt="Slide Image" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('storage/photos/1/3.png') }}" alt="Slide Image" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('storage/photos/1/11.png') }}" alt="Slide Image" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('storage/photos/1/3.png') }}" alt="Slide Image" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('storage/photos/1/11.png') }}" alt="Slide Image" />
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <img src="{{ asset('storage/photos/1/3.png') }}" alt="Slide Image" />
-                                        </div>
-                                    </div>
-
-                                </div>
+    <div class="swiper-container pgallery-thumbs"  >
+        <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample010.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample005.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample012.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample007.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample008.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample009.jpg" alt=""></div>
+        </div>
+    </div>
+</div>
+ 
 
                                 <!-- End Product slider -->
                             </div>
@@ -314,10 +310,30 @@
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    var swiper = new Swiper('.Slider-container', {
-        effect: 'cards',
-        grabCursor: true,
-        centeredSlides: true,
-        loop: true,
-    });
+ 
+ var slider = new Swiper('.pgallery-slider', {
+    slidesPerView: 1,
+    centeredSlides: true,
+    loop: true,
+    loopedSlides: 6,
+    // navigation: {
+    //     nextEl: '.swiper-button-next',
+    //     prevEl: '.swiper-button-prev',
+    // },
+    controller: {
+        control: thumbs, // Link to thumbs slider
+    }
+});
+
+var thumbs = new Swiper('.pgallery-thumbs', {
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+    centeredSlides: true,
+    loop: true,
+    slideToClickedSlide: true,
+    controller: {
+        control: slider, // Link back to main slider
+    }
+});
+
 </script>

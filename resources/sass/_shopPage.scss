@@ -439,3 +439,57 @@
         }
     }
 }
+
+
+
+
+ 
+
+.pgallery {
+    width: 100%;
+    max-width: 620px;
+    margin: 40px auto;
+    
+    //メインスライド
+    &-slider {
+        width: 100%;
+        height: auto;
+        margin: 0 0 10px 0;
+
+        .swiper-slide {
+            width: auto;
+            height: 400px;
+            
+            img {
+                display: block;
+                width: auto;
+                height: 100%;
+                margin: 0 auto;
+            }
+        }
+    }
+    
+    //サムネイルスライド
+    &-thumbs {
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+
+        .swiper-slide {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            overflow: hidden;
+            opacity: .1;
+            
+            &-active {
+                opacity: 1;
+            }
+            
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+    }
+}

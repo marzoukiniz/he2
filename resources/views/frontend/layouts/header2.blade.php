@@ -23,7 +23,10 @@
       <li class="{{Request::path()=='/' ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
        
                               
-                                            <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif"><a href="{{route('product-grids')}}">Products</a></li>												
+                                            <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif"><a href="{{route('product-grids')}}">
+
+                                            {{ __('shop') }}
+                                            </a></li>												
                                                  
                                             <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li>									
                                                
@@ -32,6 +35,8 @@
                                             </a></li>
        
       </ul>
+      @include('frontend.partials/language_switcher')
+    
     </div>
     <div id="actions">
       <a href="#" data-toggle="modal" data-target="#exampleModalPopovers"> 

@@ -90,9 +90,9 @@
                                                     <span class="out-of-stock">Sale out</span>
                                                 @elseif($product->condition == 'new')
                                                     <span class="new">New</span>
-                                                @else
+                                                <!-- @else
                                                     <span class="price-dec">{{ $product->discount }}% Off</span>
-                                                @endif
+                                                @endif -->
                                             </a>
                                         </div>
 

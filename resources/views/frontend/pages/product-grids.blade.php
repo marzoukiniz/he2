@@ -11,7 +11,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                             <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.html">Shop Grid</a></li>
+                            <li class="active"><a href="blog-single.html">Shop</a></li>
                         </ul>
                     </div>
                 </div>
@@ -265,28 +265,7 @@
 </style>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<style>
-   .swiper {
-    margin-top: 30px;
-  position: relative;
-  width: 270px;
-  height: 340px;
-}
-
-.swiper-slide {
-  border-radius: 10;
-}
-
-.swiper-slide img {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  height: -webkit-fill-available;
-}
-
-     
-
-</style>
+ 
 @endpush
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
