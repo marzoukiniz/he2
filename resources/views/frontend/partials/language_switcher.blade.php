@@ -1,11 +1,8 @@
-<div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-    @foreach($available_locales as $locale_name => $available_locale)
-        @if($available_locale === $current_locale)
-            <span class="ml-2 mr-2 text-gray-700">{{ $locale_name }}</span>
-        @else
-            <a class="ml-1 underline ml-2 mr-2" href="language/{{ $available_locale }}">
-                <span>{{ $locale_name }}</span>
-            </a>
-        @endif
-    @endforeach
+<div class="flex justify-center btn-lang-top">
+    @php
+        $next_locale = $current_locale === 'en' ? 'ar' : 'en';
+    @endphp
+    <a href="{{ url('language/' . $next_locale) }}" class="  bg-gray-200 rounded-md focus:outline-none">
+        {{ $next_locale === 'en' ? 'EN' : 'ع' }}
+    </a>
 </div>

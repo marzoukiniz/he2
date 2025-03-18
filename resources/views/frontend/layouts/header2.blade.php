@@ -20,7 +20,7 @@
         </div>
       </div>
       <ul class="">
-      <li class="{{Request::path()=='/' ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
+      <li class="{{Request::path()=='/' ? 'active' : ''}}"><a href="{{route('home')}}">{{ __('home') }}</a></li>
        
                               
                                             <li class="@if(Request::path()=='product-grids'||Request::path()=='product-lists')  active  @endif"><a href="{{route('product-grids')}}">
@@ -28,9 +28,9 @@
                                             {{ __('shop') }}
                                             </a></li>												
                                                  
-                                            <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">Blog</a></li>									
+                                            <li class="{{Request::path()=='blog' ? 'active' : ''}}"><a href="{{route('blog')}}">{{ __('blog') }}</a></li>									
                                                
-                                            <li class="{{Request::path()=='contact' ? 'active' : ''}} l-nav_item"><a href="{{route('contact')}}">Contact Us
+                                            <li class="{{Request::path()=='contact' ? 'active' : ''}} l-nav_item"><a href="{{route('contact')}}">{{ __('contactus') }}
                                             <span class="hand-waving"><img src="https://gokagn.com/wp-content/themes/theme_gokagn-official/assets/images/common/icon_contact-hand.png" alt=""></span>
                                             </a></li>
        
@@ -89,7 +89,7 @@
                                 </a></div>
 
                             @else
-                                <button class="btn btn-login"><a href="{{route('login.form')}}">Login </a>
+                                <button class="btn btn-login"><a href="{{route('login.form')}}"> {{ __('login') }} </a>
                               </div>
                             @endauth
 
@@ -155,8 +155,8 @@
           </ul>
           <div class="bottom">
             <div class="total">
-              <span>Total</span>
-              <span class="total-amount">QAR {{ number_format(Helper::totalCartPrice(), 2) }}</span>
+             <span>Total</span>
+         
             </div>
             <a href="{{ route('checkout') }}" class="btn animate">Checkout</a>
           </div>

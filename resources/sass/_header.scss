@@ -99,6 +99,29 @@ ul {
 #menu {
 	justify-content: center;
 	// padding-right: 40px;
+	.btn-lang-top{
+		width: 32px;
+    height: 32px;
+    border: 1px solid #757575;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 20px;
+	font-size: 13px;
+	opacity: 0.7;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	&:hover{
+		color: $black;
+		background: $primary;
+		opacity: 1;
+		border: none;
+		
+	}
+	}
     #menu-toggle {
         @include object(55px,55px,darken($nav-bg,5%));
         @include center;

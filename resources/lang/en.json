@@ -1,3 +1,24 @@
 {
-    "shop": "Shop"
+    "shop": "Shop",
+    "home" :"Home",
+    "blog":"Blog",
+    "contactus":"Contact us",
+    "copyrigth":"copyrights 2025 all rights reserved",
+    "aboutus":"About us",
+    "letstalk":"Let's talk",
+    "email":"Email",
+    "mobile":"Mobile",
+     "login":"Login",
+     "latest": "LATEST",
+     "arrivals":"ARRIVALS",
+     "explore":"EXPLORE",
+     "collections":"COLLECTIONS",
+     "top":"TOP",
+     "sellers":"SELLERS",
+     "brands":"BRANDS",
+     "fast_delivery":"Fast delivery",
+     "24_7_service":"24 X 7 service",
+     "special_offers":"Specal offers"
+
+
 }

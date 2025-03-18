@@ -38,6 +38,13 @@
 <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@if (app()->getLocale() == 'ar')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ asset('frontend/css/rtl.css') }}">
+@endif
 <script src="https://cdn.jsdelivr.net/npm/charming@1.0.1/charming.min.js"></script>
 
 <style>

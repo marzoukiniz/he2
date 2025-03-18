@@ -1,0 +1,26 @@
+html{
+    direction: rtl!important;
+}
+
+.header2 #actions {
+    padding-left: 40px;}
+    .header2 #brand {
+        padding-right: 40px;
+    }
+
+    .header2 li a , html, body ,.footer-bottom ,.footer-top ,.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+        
+        font-family: "Noto Kufi Arabic", sans-serif!important;
+         
+     
+        }
+
+        .section-header h3{
+            padding-left: 60px;
+            padding-right: 0;
+        }
+        .section-header::after {
+            content: "";
+            right: unset;
+            left: 0;
+        }

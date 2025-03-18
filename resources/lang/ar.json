@@ -1,3 +1,23 @@
 {
-    "shop": "المتجر"
+    "shop": "المتجر",
+    "home" :"الرئيسية",
+    "blog":"المدونة",
+    "contactus":"تواصل معنا",
+    "copyrigth":"2025 جميع الحقوق محفوظة",
+    "aboutus":"نبذة عنا",
+    "letstalk":"لنتحدث",
+    "email":"البريد",
+    "mobile":"الهاتف",
+    "login":"تسجيل  الدخول",
+    "latest": "أحدث",
+    "arrivals":"المنتجات",
+     "explore":"إكتشف",
+     "collections":"التنسيقات",
+     "top":"أفضل",
+     "sellers":"مبيعا",
+     "brands":"ماركات",
+     "fast_delivery":"توصيل سربيع",
+     "24_7_service":"24 /7 خدمة",
+     "special_offers":"أفضل العروض"
+
 }

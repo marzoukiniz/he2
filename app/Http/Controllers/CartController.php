@@ -16,6 +16,9 @@ class CartController extends Controller
     public function __construct(Product $product){
         $this->product=$product;
     }
+   
+    
+   
     public function addToCart(Request $request)
     {
         $productId = $request->input('product_id');
@@ -23,62 +26,56 @@ class CartController extends Controller
         $colorId = $request->input('color_id', null); // Optional
     
         // Check if product_id and l-id are provided
-        if (empty($request->product_id) || empty($request->input('l_id'))) {
+        if (empty($productId) || empty($lengthId)) {
             request()->session()->flash('error', 'Invalid Product or Length');
             return back();
         }
     
         // Retrieve the product by its product_id
-        $product = Product::find($request->product_id);
-    
-        // If no product is found, return an error
-        if (empty($product)) {
+        $product = Product::find($productId);
+        if (!$product) {
             request()->session()->flash('error', 'Invalid Product');
             return back();
         }
     
-        // Retrieve the selected length by its ID (l-id)
-        $lengthId = $request->input('l_id');
+        // Retrieve the selected length
         $length = $product->lengths()->where('length_id', $lengthId)->first();
-    
-        // If no matching length is found, return an error
         if (!$length) {
             request()->session()->flash('error', 'Invalid Length');
             return back();
         }
-    
-        // Retrieve the selected color (if necessary, add this in the request URL or from form submission)
         $color = null;
         if ($request->has('color_id')) {
             $color = $product->colors()->where('color_id', $request->color_id)->first();
         }
     
+    
         // Check if the product is already in the cart
         $already_cart = Cart::where('user_id', auth()->user()->id)
                             ->where('order_id', null)
                             ->where('product_id', $product->id)
-                            ->where('length_id', $lengthId) // Ensure we check the length_id
-                            ->where('color_id', $request->color_id) // Ensure we check the color_id too (if necessary)
+                            ->where('length_id', $lengthId)
+                            ->where(function ($query) use ($colorId) {
+                                if ($colorId) {
+                                    $query->where('color_id', $colorId);
+                                } else {
+                                    $query->whereNull('color_id');
+                                }
+                            })
                             ->first();
     
         if ($already_cart) {
-            // If already in the cart, increase quantity and amount
+            // If already in the cart, increase quantity
             $already_cart->quantity += 1;
-            $already_cart->amount += $length->price; // Use length price here (or additional cost if that's the case)
-    
             $already_cart->save();
-    
         } else {
             // If not in the cart, create a new cart entry
             $cart = new Cart;
             $cart->user_id = auth()->user()->id;
             $cart->product_id = $product->id;
-            $cart->length_id = $lengthId; // Add length_id to the cart
-            $cart->color_id = $color ? $color->id : null; // Add color_id to the cart if applicable
-            $cart->amount = $product->price; // Use the price of the selected length (or additional cost)
+            $cart->length_id = $lengthId;
+            $cart->color_id = $color ? $color->color_id : null; // Add color_id to the cart if applicable
             $cart->quantity = 1;
-          
-    
             $cart->save();
     
             // Update wishlist with cart ID (if applicable)
@@ -97,7 +94,6 @@ class CartController extends Controller
         return back();
     }
     
-
     public function singleAddToCart(Request $request){
         $request->validate([
             'slug'      =>  'required',

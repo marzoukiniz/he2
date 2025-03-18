@@ -69,21 +69,48 @@
                             @endphp
 
                             @if ($colors->count())
-                                <ul class="color-options">
+                            <ul class="color-options">
+                                @if($colors->isNotEmpty() && $colors->where('color', '!=', 'no color')->count() > 0)
                                     @foreach ($colors as $color)
-                                        <li>
-                                            <div class="color-btn" data-product="{{ $product->id }}"
-                                                data-color="{{ $color->color }}"
-                                                style="background-color: {{ $color->color }};"
-                                                onclick="handleColorButtonClick(this)">
+                                        @if (!empty($color->color) && $color->color != 'no color')
+                                            <li>
+                                                <div class="color-btn" data-product="{{ $product->id }}"
+                                                    data-color="{{ $color->color }}"
+                                                    style="background-color: {{ $color->color }};"
+                                                    onclick="handleColorButtonClick(this)">
+                                                    <img src="{{ asset('/images/' . $color->color . '.png') }}" />
                                                 </div>
-                                        </li>
+                                            </li>
+                                        @endif
                                     @endforeach
-                                </ul>
+                                @else
+                                    <!-- No color available, check if 'no color' exists in the product_colors table -->
+                                    @php
+                                        $defaultColor = $product->colors->where('color', 'no color')->first();
+                                        $defaultLength = $product->lengths->first();
+                                    @endphp
+                                    @if($defaultColor)
+                                        <input type="hidden" name="color_id" value="{{ $defaultColor->color_id }}">
+                                    @else
+                                        <input type="hidden" name="color_id" value="no-color">
+                                    @endif
 
-                                <!-- Lengths and Stock will be updated dynamically -->
-                                <div class="length-stock-container" id="length-stock-{{ $product->id }}"></div>
-                            @endif
+                                    <!-- Show the length only if there is no color variation -->
+                                    @if(!$colors->isNotEmpty() || $colors->where('color', '!=', 'no color')->count() == 0)
+                                        @if($defaultLength)
+                                            <input type="hidden" name="l_id" value="{{ $defaultLength->length_id }}">
+                                        @else
+                                            <p style="color: red;">No available lengths for this product.</p>
+                                        @endif
+                                    @endif
+                                @endif
+                            </ul>
+
+
+    <!-- Lengths and Stock will be updated dynamically -->
+    <div class="length-stock-container" id="length-stock-{{ $product->id }}"></div>
+        @endif
+
 
                         </div>
 
@@ -113,7 +140,7 @@
 
                                 <span title="Add to cart" >Add
                                     to cart</span>
-</button>
+                              </button>
 
                             <div class="price-here">
                                 <span id="price-{{ $product->id }}" data-base-price="{{ $after_discount }}">
@@ -155,29 +182,29 @@
                                 <!-- Product Slider -->
                                
                                 <div class="pgallery">                
-    <div class="swiper-container pgallery-slider"  >
-        <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample010.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample005.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample012.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample007.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample008.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample009.jpg" alt=""></div>
-        </div>
-       
-    </div>
+                                <div class="swiper-container pgallery-slider"  >
+                                    <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample010.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample005.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample012.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample007.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample008.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample009.jpg" alt=""></div>
+                                    </div>
+                                
+                                </div>
 
-    <div class="swiper-container pgallery-thumbs"  >
-        <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample010.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample005.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample012.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample007.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample008.jpg" alt=""></div>
-            <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample009.jpg" alt=""></div>
-        </div>
-    </div>
-</div>
+                                <div class="swiper-container pgallery-thumbs"  >
+                                    <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample010.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample005.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample012.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample007.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample008.jpg" alt=""></div>
+                                        <div class="swiper-slide"><img src="//into-the-program.com/demo/images/sample009.jpg" alt=""></div>
+                                    </div>
+                                </div>
+                            </div>
  
 
                                 <!-- End Product slider -->

@@ -86,7 +86,7 @@ class ProductController extends Controller
     
         if ($product) {
             // ✅ تعيين الألوان أو استخدام اللون الافتراضي "non color"
-            $colors = !empty($request->colors) ? $request->colors : ['non color'];
+            $colors = !empty($request->colors) ? $request->colors : ['no color'];
             $colorIds = []; // تخزين معرّفات الألوان لتجنب التكرار
     
             foreach ($colors as $color) {
