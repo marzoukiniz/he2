@@ -10,6 +10,10 @@
     <a href="{{route('cache.clear')}}"  class="btn btn-outline-danger btn-sm mr-3">
       Cache Clear
     </a>
+    <a href="{{ route('pos.index') }}" class="btn btn-outline-info btn-sm mr-3">
+    POS
+</a>
+
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">

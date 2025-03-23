@@ -17,6 +17,7 @@
     use App\Http\Controllers\HomeController;
     use App\Http\Controllers\BrandController;
     use App\Http\Controllers\ColorController;
+    use App\Http\Controllers\PosController;
     use \UniSharp\LaravelFilemanager\Lfm;
 
     /*
@@ -186,6 +187,7 @@ Route::post('/admin/product/import-csv', 'ProductController@importCSV')->name('p
         Route::resource('/category', 'CategoryController');
         // Product
         Route::resource('/product', 'ProductController');
+     
         // Ajax for sub category
         Route::post('/category/{id}/child', 'CategoryController@getChildByParent');
         // POST category
@@ -218,7 +220,13 @@ Route::post('/admin/product/import-csv', 'ProductController@importCSV')->name('p
         Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
 
     });
-
+ // pos section 
+ Route::prefix('pos')->group(function () {
+    Route::get('/', [PosController::class, 'index'])->name('pos.index'); // Show POS interface
+    Route::post('/add-to-cart', [PosController::class, 'addToCart'])->name('pos.addToCart'); // Add product to cart
+    Route::post('/remove-from-cart', [PosController::class, 'removeFromCart'])->name('pos.removeFromCart'); // Remove product from cart
+    Route::post('/checkout', [PosController::class, 'checkout'])->name('pos.checkout'); // Process checkout
+});
 
 // User section start
     Route::group(['prefix' => '/user', 'middleware' => ['user']], function () {
