@@ -74,7 +74,7 @@
 												</div>
 											</div> --}}
 											@php
-												$max=DB::table('products')->max('sell_price');
+												$max=DB::table('products')->max('price');
 												// dd($max);
 											@endphp
 											<div id="slider-range" data-min="0" data-max="{{$max}}"></div>
@@ -83,7 +83,7 @@
 											<div class="label-input">
 												<span>Range:</span>
 												<input style="" type="text" id="amount" readonly/>
-												<input type="hidden" name="price_range" id="price_range" value="@if(!empty($_GET['sell_price'])){{$_GET['sell_price']}}@endif"/>
+												<input type="hidden" name="price_range" id="price_range" value="@if(!empty($_GET['price'])){{$_GET['price']}}@endif"/>
 											</div>
 											</div>
 										</div>
@@ -117,9 +117,9 @@
                                             <div class="content">
                                                 <h5><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h5>
                                                 @php
-                                                    $org=($product->sell_price-($product->sell_price*$product->discount)/100);
+                                                    $org=($product->price-($product->price*$product->discount)/100);
                                                 @endphp
-                                                <p class="price"><del class="text-muted">Qar {{number_format($product->sell_price,2)}}</del>   Qar {{number_format($org,2)}}  </p>                                                
+                                                <p class="price"><del class="text-muted">Qar {{number_format($product->price,2)}}</del>   Qar {{number_format($org,2)}}  </p>                                                
                                             </div>
                                         </div>
                                         <!-- End Single Post -->
@@ -162,7 +162,7 @@
 												<select class='sortBy' name='sortBy' onchange="this.form.submit();">
 													<option value="">Default</option>
 													<option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
-													<option value="sell_price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='sell_price') selected @endif>Price</option>
+													<option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Price</option>
 													<option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
 													<option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Brand</option>
 												</select>
@@ -210,10 +210,10 @@
 														<div class="product-content">
 															<div class="product-price">
 																@php
-																	$after_discount=($product->sell_price-($product->sell_price*$product->discount)/100);
+																	$after_discount=($product->price-($product->price*$product->discount)/100);
 																@endphp
 																<span>Qar {{number_format($after_discount,2)}}</span>
-																<del>Qar {{number_format($product->sell_price,2)}}</del>
+																<del>Qar {{number_format($product->price,2)}}</del>
 															</div>
 															<h3 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
 														{{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
@@ -303,9 +303,9 @@
 													</div>
 												</div>
 												@php
-													$after_discount=($product->sell_price-($product->sell_price*$product->discount)/100);
+													$after_discount=($product->price-($product->price*$product->discount)/100);
 												@endphp
-												<h3><small><del class="text-muted">Qar {{number_format($product->sell_price,2)}}</del></small>    Qar {{number_format($after_discount,2)}}  </h3>
+												<h3><small><del class="text-muted">Qar {{number_format($product->price,2)}}</del></small>    Qar {{number_format($after_discount,2)}}  </h3>
 												<div class="quickview-peragraph">
 													<p>{!! html_entity_decode($product->summary) !!}</p>
 												</div>

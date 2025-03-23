@@ -1496,6 +1496,11 @@ body {
   position: relative;
   top: 3px;
 }
+.shop-page-container .toolbox .container .top-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .shop-page-container .collapse {
   transition: height 0.3s ease-out, opacity 0.3s ease-out;
   height: 0;

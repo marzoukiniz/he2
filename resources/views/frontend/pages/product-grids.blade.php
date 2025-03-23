@@ -199,24 +199,30 @@
 	                <div id="stick_here" style="height: 0px;"></div>
 	                <div class="toolbox elemento_stick add_bottom_30">
 	                    <div class="container">
-	                        <ul class="clearfix">
-	                            <li>
-	                                <div class="sort_select">
-                                    <select class='sortBy' name='sortBy' onchange="this.form.submit();" id="sort">
-                                                <option value="">Default</option>
-                                                <option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
-                                                <option value="sell_price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='sell_price') selected @endif>Price</option>
-                                                <option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
-                                                <option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Brand</option>
-                                            </select>
-	                                </div>
-	                            </li>
+                            <div class="top-sort" >
+                        <div class="single-shorter">
+                        <form action="{{route('shop.filter')}}" method="POST">
+                        @csrf
+												<select class='sortBy' name='sortBy' onchange="this.form.submit();">
+													<option value="">Sort By</option>
+													<option value="title" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='title') selected @endif>Name</option>
+													<option value="price" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='price') selected @endif>Price</option>
+													<option value="category" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='category') selected @endif>Category</option>
+													<option value="brand" @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='brand') selected @endif>Brand</option>
+												</select>
+</form>
+											</div>
+                                            
+
+	                        <ul class=" view-type">
+	                           
 	                            <li>
 	                                <a href="#0"><i class="ti-view-grid"></i></a>
 	                                <a href="listing-row-1-sidebar-left.html"><i class="ti-view-list"></i></a>
 	                            </li>
 	                            
 	                        </ul>
+                            </div>
 	                    </div>
 	                </div>
 	                <!-- /toolbox -->

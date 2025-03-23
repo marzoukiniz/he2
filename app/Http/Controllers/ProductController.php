@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Color;
 use App\Models\ProductColor;
 use App\Models\ProductLength;
 use Illuminate\Support\Str;
@@ -31,11 +32,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $brand=Brand::get();
-        $category=Category::where('is_parent',1)->get();
-        // return $category;
-        return view('backend.product.create')->with('categories',$category)->with('brands',$brand);
+        $brand = Brand::get();
+        $category = Category::where('is_parent', 1)->get();
+        $colors = Color::where('status', 1)->get(); // Fetch active colors
+    
+        return view('backend.product.create')
+            ->with('categories', $category)
+            ->with('brands', $brand)
+            ->with('colors', $colors); // Pass colors to the view
     }
+    
 
     /**
      * Store a newly created resource in storage.

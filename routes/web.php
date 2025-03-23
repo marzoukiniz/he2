@@ -16,6 +16,7 @@
     use App\Http\Controllers\NotificationController;
     use App\Http\Controllers\HomeController;
     use App\Http\Controllers\BrandController;
+    use App\Http\Controllers\ColorController;
     use \UniSharp\LaravelFilemanager\Lfm;
 
     /*
@@ -177,6 +178,7 @@ Route::post('/admin/product/import-csv', 'ProductController@importCSV')->name('p
         Route::resource('banner', 'BannerController');
         // Brand
         Route::resource('brand', 'BrandController');
+        Route::resource('color', ColorController::class);
         // Profile
         Route::get('/profile', [AdminController::class, 'profile'])->name('admin-profile');
         Route::post('/profile/{id}', [AdminController::class, 'profileUpdate'])->name('profile-update');
@@ -214,6 +216,7 @@ Route::post('/admin/product/import-csv', 'ProductController@importCSV')->name('p
         // Password Change
         Route::get('change-password', [AdminController::class, 'changePassword'])->name('change.password.form');
         Route::post('change-password', [AdminController::class, 'changPasswordStore'])->name('change.password');
+
     });
 
 

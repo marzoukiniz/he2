@@ -142,34 +142,40 @@
               @enderror
             </div>
 
-            <!-- Colors (Optional) -->
             <div class="form-group">
-              <label>الألوان (اختياري)</label>
-              <div id="color-container">
-                <div class="color-row d-flex">
-                  <input type="text" name="colors[]" class="form-control m-1" placeholder="أدخل لونًا">
-                  <button type="button" class="btn btn-success add-color">+</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Lengths, Additional Cost & Stock (Optional) -->
-            <div class="form-group">
-              <label>الأطوال لكل لون (اختياري)</label>
-              <div id="length-container">
-                <div class="length-row d-flex">
-                  <select name="lengths[0][color]" class="form-control m-1 color-select">
-                    <option value="">اختر لونًا</option>
-                  </select>
-                  <input type="number" name="lengths[0][length]" class="form-control m-1" placeholder="الطول">
-                  <input type="number" name="lengths[0][additional_cost]" class="form-control m-1" placeholder="تكلفة إضافية (اختياري)">
-                  <input type="number" name="lengths[0][stock]" class="form-control m-1" placeholder="المخزون" required>
-                  <button type="button" class="btn btn-success add-length">+</button>
-                </div>
+            <label>الألوان (اختياري)</label>
+            <div id="color-container">
+              <div class="color-row d-flex">
+                <select name="colors[]" class="form-control m-1">
+                  <option value="">اختر لونًا</option>
+                  @foreach($colors as $color)
+                    <option value="{{ $color->name }}">{{ $color->name }}</option>
+                  @endforeach
+                </select>
+                <button type="button" class="btn btn-success add-color">+</button>
               </div>
             </div>
           </div>
-        </div> <!-- End row -->
+
+
+      <div class="form-group">
+  <label>الأطوال لكل لون (اختياري)</label>
+  <div id="length-container">
+    <div class="length-row d-flex">
+      <select name="lengths[0][color]" class="form-control m-1 color-select">
+        <option value="">اختر لونًا</option>
+        @foreach($colors as $color)
+          <option value="{{ $color->name }}">{{ $color->name }}</option>
+        @endforeach
+      </select>
+      <input type="number" name="lengths[0][length]" class="form-control m-1" placeholder="الطول">
+      <input type="number" name="lengths[0][additional_cost]" class="form-control m-1" placeholder="تكلفة إضافية (اختياري)">
+      <input type="number" name="lengths[0][stock]" class="form-control m-1" placeholder="المخزون" required>
+      <button type="button" class="btn btn-success add-length">+</button>
+    </div>
+  </div>
+</div>
+
 
         <div class="form-group mb-3">
           <button type="reset" class="btn btn-warning">Reset</button>
@@ -199,11 +205,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let newColorRow = document.createElement('div');
     newColorRow.classList.add('color-row', 'd-flex');
     newColorRow.innerHTML = `
-      <input type="text" name="colors[]" class="form-control m-1" placeholder="أدخل لونًا">
+      <select name="colors[]" class="form-control m-1">
+        <option value="">اختر لونًا</option>
+        @foreach($colors as $color)
+          <option value="{{ $color->name }}">{{ $color->name }}</option>
+        @endforeach
+      </select>
       <button type="button" class="btn btn-danger remove-color">-</button>
     `;
     document.getElementById('color-container').appendChild(newColorRow);
-    updateColorDropdowns();
   });
 
   // Removing a color
@@ -256,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.getElementById('color-container').addEventListener('input', updateColorDropdowns);
 });
+
 </script>
 
 <script>
